@@ -42,8 +42,13 @@ public class Grid {
    	    creature.setX(x);
    	    creature.setY(y);
    	    return creature;
+   	case "Random":
+   	    creature = new RandomCreature();
+	    creature.setX(x);
+	    creature.setY(y);
+	    return creature;
    	case "Test":
-   	 creature = new TestCreature();
+   	    creature = new TestCreature();
 	    creature.setX(x);
 	    creature.setY(y);
 	    return creature;

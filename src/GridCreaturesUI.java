@@ -95,6 +95,7 @@ public class GridCreaturesUI extends Application {
     private void generateCreatureList() {
 	creatureTypes = new LinkedList<String>();
 	creatureTypes.add("Statue");
+	creatureTypes.add("Random");
 	creatureTypes.add("Test");
     }
     
