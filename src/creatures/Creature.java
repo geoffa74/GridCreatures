@@ -10,9 +10,9 @@ public abstract class Creature {
     private int x;
     private int y;
     private int speed = 0;
-    boolean hasActed;
+    private boolean hasActed;
     private Image image = null;
-    boolean isInitialized = false;
+    private boolean isInitialized = false;
 
     public Image getImage() {
         return image;
