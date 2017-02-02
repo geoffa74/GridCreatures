@@ -1,3 +1,4 @@
+package creatures;
 import java.util.Map;
 
 import javafx.scene.paint.Color;

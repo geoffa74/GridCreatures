@@ -1,8 +1,14 @@
+package structure;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import creatures.Creature;
+import creatures.RandomCreature;
+import creatures.StatueCreature;
+import creatures.TestCreature;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -81,10 +87,10 @@ public class Grid {
 	for(int i = 0; i < gridWidth; i++) {
 	    for(int j = 0; j < gridHeight; j++) {
 		if(creatures[i][j] != null) {
-		    if(!creatures[i][j].hasActed && fastest == null) {
+		    if(!creatures[i][j].hasActed() && fastest == null) {
 			fastest = creatures[i][j];
 		    } else {
-			if(!creatures[i][j].hasActed && creatures[i][j].getSpeed() > fastest.getSpeed()) {
+			if(!creatures[i][j].hasActed() && creatures[i][j].getSpeed() > fastest.getSpeed()) {
 			    fastest = creatures[i][j];
 			}
 		    }

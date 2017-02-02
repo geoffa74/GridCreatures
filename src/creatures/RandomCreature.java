@@ -1,3 +1,4 @@
+package creatures;
 import javafx.scene.paint.Color;
 
 public class RandomCreature extends Creature {

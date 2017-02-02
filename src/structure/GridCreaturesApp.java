@@ -1,3 +1,5 @@
+package structure;
+
 import javafx.application.Application;
 
 public class GridCreaturesApp {
