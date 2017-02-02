@@ -1,55 +1,64 @@
 package creatures;
-import java.util.Map;
 
 import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 
 public abstract class Creature {
-    
+
     private Color color = Color.GRAY;
     private Creature[][] creatures;
     private int x;
-    
+    private Image image = null;
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
     public int getX() {
-        return x;
+	return x;
     }
 
     public int getY() {
-        return y;
+	return y;
     }
 
     private int y;
-    private int speed;
+    private int speed = 0;
     boolean hasActed;
-    
+
     public void setActed(boolean hasActed) {
 	this.hasActed = hasActed;
     }
-    
+
     public boolean hasActed() {
 	return hasActed;
     }
 
     public Color getColor() {
-        return color;
+	return color;
     }
 
     public void setColor(Color color) {
-        this.color = color;
+	this.color = color;
     }
-    
+
     public boolean kill(int x, int y) {
-	if(isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] != null) {
+	if (isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] != null) {
 	    creatures[this.x + x][this.y + y] = null;
 	    return true;
 	} else {
 	    return false;
 	}
     }
-    
+
     public abstract void act();
-    
+
     public boolean move(int x, int y) {
-	if(isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] == null) {
+	if (isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] == null) {
 	    creatures[this.x][this.y] = null;
 	    this.x += x;
 	    this.y += y;
@@ -59,9 +68,9 @@ public abstract class Creature {
 	    return false;
 	}
     }
-    
+
     public boolean spawn(Creature creature, int x, int y) {
-	if(isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] == null) {
+	if (isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] == null) {
 	    creature.setX(this.x + x);
 	    creature.setY(this.y + y);
 	    creatures[this.x + x][this.y + y] = creature;
@@ -72,27 +81,27 @@ public abstract class Creature {
     }
 
     public void setX(int x) {
-        this.x = x;
+	this.x = x;
     }
 
     public void setY(int y) {
-        this.y = y;
+	this.y = y;
     }
 
     private boolean isValidLocation(int x, int y) {
-	return x >= 0 && x < creatures.length && y >= 0 && y < creatures[0].length; 
+	return x >= 0 && x < creatures.length && y >= 0 && y < creatures[0].length;
     }
 
     public void giveCurrentCreatures(Creature[][] creatures) {
 	this.creatures = creatures;
     }
-    
+
     protected void setSpeed(int speed) {
 	this.speed = speed;
     }
-    
+
     public int getSpeed() {
 	return speed;
     }
-    
+
 }
