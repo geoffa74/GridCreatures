@@ -45,18 +45,15 @@ public class Grid {
 	switch (creatureType) {
 	case "Statue":
 	    creature = new StatueCreature();
-	    creature.setX(x);
-	    creature.setY(y);
+	    creature.initializeLocation(x, y);
 	    return creature;
 	case "Random":
 	    creature = new RandomCreature();
-	    creature.setX(x);
-	    creature.setY(y);
+	    creature.initializeLocation(x, y);
 	    return creature;
 	case "Test":
 	    creature = new TestCreature();
-	    creature.setX(x);
-	    creature.setY(y);
+	    creature.initializeLocation(x, y);
 	    return creature;
 	default:
 	    return null;

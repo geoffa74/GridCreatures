@@ -8,7 +8,11 @@ public abstract class Creature {
     private Color color = Color.GRAY;
     private Creature[][] creatures;
     private int x;
+    private int y;
+    private int speed = 0;
+    boolean hasActed;
     private Image image = null;
+    boolean isInitialized = false;
 
     public Image getImage() {
         return image;
@@ -25,10 +29,6 @@ public abstract class Creature {
     public int getY() {
 	return y;
     }
-
-    private int y;
-    private int speed = 0;
-    boolean hasActed;
 
     public void setActed(boolean hasActed) {
 	this.hasActed = hasActed;
@@ -71,21 +71,25 @@ public abstract class Creature {
 
     public boolean spawn(Creature creature, int x, int y) {
 	if (isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] == null) {
-	    creature.setX(this.x + x);
-	    creature.setY(this.y + y);
+	    creature.setLocation(this.x + x, this.y + y);
 	    creatures[this.x + x][this.y + y] = creature;
 	    return true;
 	} else {
 	    return false;
 	}
     }
-
-    public void setX(int x) {
+    
+    private void setLocation(int x, int y) {
 	this.x = x;
-    }
-
-    public void setY(int y) {
 	this.y = y;
+    }
+    
+    public void initializeLocation(int x, int y) {
+	if(!isInitialized) {
+	    this.x = x;
+	    this.y = y;
+	    isInitialized = true;
+	}
     }
 
     private boolean isValidLocation(int x, int y) {
