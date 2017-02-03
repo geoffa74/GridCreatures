@@ -107,5 +107,13 @@ public abstract class Creature {
     public int getSpeed() {
 	return speed;
     }
+    
+    protected int getGridWidth() {
+	return creatures.length;
+    }
+    
+    protected int getGridHeight() {
+	return creatures[0].length;
+    }
 
 }

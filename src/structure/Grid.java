@@ -1,10 +1,5 @@
 package structure;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import creatures.Creature;
 import creatures.RandomCreature;
 import creatures.StatueCreature;
@@ -20,6 +15,7 @@ public class Grid {
     private int gridWidth;
     private int gridHeight;
     private GraphicsContext g;
+    private boolean stopRun = false;
 
     public Grid(GraphicsContext g, double width, double height, int gridWidth, int gridHeight) {
 	this.width = width;
@@ -28,13 +24,14 @@ public class Grid {
 	this.gridWidth = gridWidth;
 	this.g = g;
 	creatures = new Creature[gridWidth][gridHeight];
-
+	draw();
     }
 
     public void addCreature(double x, double y, String creatureType) {
 	int gridX = (int) Math.floor(x * gridWidth / width);
 	int gridY = (int) Math.floor(y * gridHeight / height);
 	creatures[gridX][gridY] = generateCreature(creatureType, gridX, gridY);
+	draw();
     }
 
     private Creature generateCreature(String creatureType, int x, int y) {
@@ -77,6 +74,7 @@ public class Grid {
 		}
 	    }
 	}
+	draw();
     }
 
     private Creature getFastestCreature() {
@@ -97,8 +95,27 @@ public class Grid {
 	return fastest;
     }
 
-    public void run() {
+    public void run(int interval) {
+	Thread t = new Thread(new Runnable() {
 
+	    @Override
+	    public void run() {
+		long initialTime;
+		while(!stopRun) {
+		    initialTime = System.currentTimeMillis();
+		    act();
+		    draw();
+		    while(System.currentTimeMillis() - initialTime < interval) {}
+		}
+		stopRun = false;
+	    }
+	    
+	});
+	t.start();
+    }
+    
+    public void stop() {
+	stopRun = true;
     }
 
     public void changeGridSize(int gridWidth, int gridHeight) {
@@ -134,11 +151,20 @@ public class Grid {
 	}
     }
 
-    public void draw() {
+    private void draw() {
 	g.setFill(Color.WHITE);
 	g.fillRect(0, 0, width, height);
 	drawCreatures();
 	drawGrid();
+    }
+
+    public void reset() {
+	for (int i = 0; i < gridWidth; i++) {
+	    for (int j = 0; j < gridHeight; j++) {
+		creatures[i][j] = null;
+	    }
+	}
+	draw();
     }
 
 }
