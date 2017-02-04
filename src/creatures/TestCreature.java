@@ -10,8 +10,7 @@ public class TestCreature extends Creature {
 
     @Override
     public void act() {
-	spawn(new StatueCreature(), 1, 0);
-	move(0, 1);
+	System.out.println(getCreatureName(0,1));
     }
 
 }

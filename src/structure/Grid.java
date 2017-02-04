@@ -111,6 +111,7 @@ public class Grid {
 	    }
 	    
 	});
+	t.setDaemon(true);
 	t.start();
     }
     

@@ -115,5 +115,13 @@ public abstract class Creature {
     protected int getGridHeight() {
 	return creatures[0].length;
     }
+    
+    protected String getCreatureName(int x, int y) {
+	if (isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] != null) {
+	    return creatures[this.x + x][this.y + y].getClass().getSimpleName();
+	} else {
+	    return null;
+	}
+    }
 
 }
