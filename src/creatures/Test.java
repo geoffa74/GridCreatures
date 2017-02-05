@@ -2,9 +2,9 @@ package creatures;
 
 import javafx.scene.image.Image;
 
-public class TestCreature extends Creature {
+public class Test extends Creature {
 
-    public TestCreature() {
+    public Test() {
 	setImage(new Image("https://www.smashingmagazine.com/wp-content/uploads/2015/06/10-dithering-opt.jpg"));
     }
 

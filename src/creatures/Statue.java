@@ -1,6 +1,6 @@
 package creatures;
 
-public class StatueCreature extends Creature {
+public class Statue extends Creature {
 
     @Override
     public void act() {

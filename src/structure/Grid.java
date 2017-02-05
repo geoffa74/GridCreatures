@@ -1,9 +1,9 @@
 package structure;
 
 import creatures.Creature;
-import creatures.RandomCreature;
-import creatures.StatueCreature;
-import creatures.TestCreature;
+import creatures.Random;
+import creatures.Statue;
+import creatures.Test;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 

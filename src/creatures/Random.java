@@ -2,9 +2,9 @@ package creatures;
 
 import javafx.scene.paint.Color;
 
-public class RandomCreature extends Creature {
+public class Random extends Creature {
 
-    public RandomCreature() {
+    public Random() {
 	setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
     }
 
