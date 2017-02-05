@@ -10,7 +10,7 @@ public class TestCreature extends Creature {
 
     @Override
     public void act() {
-	System.out.println(getCreatureName(0,1));
+	spawn("TestCreature",(int) (Math.random() * 3) - 1, (int) (Math.random() * 3) - 1);
     }
 
 }

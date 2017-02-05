@@ -69,10 +69,17 @@ public abstract class Creature {
 	}
     }
 
-    public boolean spawn(Creature creature, int x, int y) {
+    public boolean spawn(String creatureName, int x, int y) {
 	if (isValidLocation(this.x + x, this.y + y) && creatures[this.x + x][this.y + y] == null) {
-	    creature.setLocation(this.x + x, this.y + y);
-	    creatures[this.x + x][this.y + y] = creature;
+	    Creature creature;
+	    try {
+		creature = (Creature) Class.forName("creatures." + creatureName).newInstance();
+		creature.setActed(true);
+		creature.setLocation(this.x + x, this.y + y);
+		creatures[this.x + x][this.y + y] = creature;
+	    } catch (Exception e){
+		return false;
+	    }
 	    return true;
 	} else {
 	    return false;

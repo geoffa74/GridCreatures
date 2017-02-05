@@ -35,24 +35,12 @@ public class Grid {
     }
 
     private Creature generateCreature(String creatureType, int x, int y) {
-	if (creatureType == null) {
-	    return null;
-	}
 	Creature creature;
-	switch (creatureType) {
-	case "Statue":
-	    creature = new StatueCreature();
+	try {
+	    creature = (Creature) Class.forName("creatures."+creatureType).newInstance();
 	    creature.initializeLocation(x, y);
 	    return creature;
-	case "Random":
-	    creature = new RandomCreature();
-	    creature.initializeLocation(x, y);
-	    return creature;
-	case "Test":
-	    creature = new TestCreature();
-	    creature.initializeLocation(x, y);
-	    return creature;
-	default:
+	} catch (Exception e) {
 	    return null;
 	}
     }
