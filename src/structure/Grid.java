@@ -38,7 +38,6 @@ public class Grid {
 	    creature.initializeLocation(x, y);
 	    return creature;
 	} catch (Exception e) {
-	    e.printStackTrace();
 	    return null;
 	}
     }

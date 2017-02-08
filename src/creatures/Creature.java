@@ -13,10 +13,6 @@ public abstract class Creature {
     private boolean hasActed;
     private Image image = null;
     private boolean isInitialized;
-    
-    public Creature() {
-	
-    }
 
     public Image getImage() {
         return image;

@@ -2,4 +2,4 @@ windowWidth: 800
 windowHeight: 800
 gridWidth: 20
 gridHeight: 20
-creatureList: RandomCreature, StatueCreature, TestCreature
+creatureList: Random, Statue, Rabbit, Test
