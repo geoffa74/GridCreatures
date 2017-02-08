@@ -1,9 +1,6 @@
 package structure;
 
 import creatures.Creature;
-import creatures.Random;
-import creatures.Statue;
-import creatures.Test;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -37,8 +34,11 @@ public class Grid {
     private Creature generateCreature(String creatureType, int x, int y) {
 	Creature creature;
 	try {
-	    creature = (Creature) Class.forName("creatures."+creatureType).newInstance();
-	    creature.initializeLocation(x, y);
+	    @SuppressWarnings("rawtypes")
+	    Class[] args = new Class[2];
+	    args[0] = int.class;
+	    args[1] = int.class;
+	    creature = (Creature) Class.forName("creatures."+creatureType).getDeclaredConstructor(args).newInstance(x,y);
 	    return creature;
 	} catch (Exception e) {
 	    return null;
