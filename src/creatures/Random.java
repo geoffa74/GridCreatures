@@ -7,7 +7,7 @@ public class Random extends Creature {
     public Random() {
 	setColor(new Color(Math.random(), Math.random(), Math.random(), 1));
     }
-
+    
     @Override
     public void act() {
 	setColor(new Color(Math.random(), Math.random(), Math.random(), 1));

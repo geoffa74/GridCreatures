@@ -34,13 +34,11 @@ public class Grid {
     private Creature generateCreature(String creatureType, int x, int y) {
 	Creature creature;
 	try {
-	    @SuppressWarnings("rawtypes")
-	    Class[] args = new Class[2];
-	    args[0] = int.class;
-	    args[1] = int.class;
-	    creature = (Creature) Class.forName("creatures."+creatureType).getDeclaredConstructor(args).newInstance(x,y);
+	    creature = (Creature) Class.forName("creatures."+creatureType).newInstance();
+	    creature.initializeLocation(x, y);
 	    return creature;
 	} catch (Exception e) {
+	    e.printStackTrace();
 	    return null;
 	}
     }

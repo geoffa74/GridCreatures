@@ -12,12 +12,10 @@ public abstract class Creature {
     private int speed = 0;
     private boolean hasActed;
     private Image image = null;
+    private boolean isInitialized;
     
-    public Creature() {}
-    
-    public Creature(int x, int y) {
-	this.x = x;
-	this.y = y;
+    public Creature() {
+	
     }
 
     public Image getImage() {
@@ -89,6 +87,14 @@ public abstract class Creature {
 	    return true;
 	} else {
 	    return false;
+	}
+    }
+    
+    public void initializeLocation(int x, int y) {
+	if(!isInitialized) {
+	    this.x = x;
+	    this.y = y;
+	    isInitialized = true;
 	}
     }
     

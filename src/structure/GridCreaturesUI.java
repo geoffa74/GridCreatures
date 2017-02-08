@@ -146,6 +146,7 @@ public class GridCreaturesUI extends Application {
 		parseParameter(line);
 		line = reader.readLine();
 	    }
+	    reader.close();
 	} catch (FileNotFoundException e) {
 	    
 	} catch (IOException e) {
