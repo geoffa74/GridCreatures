@@ -21,6 +21,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -51,6 +53,7 @@ public class GridCreaturesUI extends Application {
 	    }
 
 	});
+	
 	GraphicsContext g = canvas.getGraphicsContext2D();
 	grid = new Grid(g, canvas.getWidth(), canvas.getHeight(), gridWidth, gridHeight);
 
@@ -73,33 +76,6 @@ public class GridCreaturesUI extends Application {
 
 	});
 	
-	MenuItem runItem = new MenuItem("Run");
-	runItem.setOnAction(new EventHandler<ActionEvent>() {
-
-	    @Override
-	    public void handle(ActionEvent event) {
-		TextInputDialog dialog = new TextInputDialog("walter");
-		dialog.setTitle("Interval");
-		dialog.setHeaderText("Interval Input");
-		dialog.setContentText("Please enter an interval in ms: ");
-		Optional<String> result = dialog.showAndWait();
-		if (result.isPresent()){
-		    grid.run(Integer.parseInt(result.get()));
-		}
-	    }
-
-	});
-	
-	MenuItem stopItem = new MenuItem("Stop");
-	stopItem.setOnAction(new EventHandler<ActionEvent>() {
-
-	    @Override
-	    public void handle(ActionEvent event) {
-		grid.stop();
-	    }
-
-	});
-	
 	MenuItem resetItem = new MenuItem("Reset");
 	resetItem.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -110,7 +86,7 @@ public class GridCreaturesUI extends Application {
 
 	});
 
-	gridMenu.getItems().addAll(actItem, runItem, stopItem, resetItem);
+	gridMenu.getItems().addAll(actItem, resetItem);
 
 	Menu creatureMenu = new Menu("Creature");
 	List<MenuItem> creatureMenuItems = new LinkedList<MenuItem>();
@@ -131,7 +107,21 @@ public class GridCreaturesUI extends Application {
 	menuBar.getMenus().addAll(gridMenu, creatureMenu);
 
 	Scene scene = new Scene(root, windowWidth, windowHeight);
+	scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
+	    @Override
+	    public void handle(KeyEvent event) {
+		switch(event.getCode()) {
+		case A:
+		    grid.act();
+		    break;
+		case R:
+		    grid.reset();
+		    break;
+		}
+	    }
+	    
+	});
 	primaryStage.setTitle("Test");
 	primaryStage.setScene(scene);
 	primaryStage.show();

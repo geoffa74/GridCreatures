@@ -12,7 +12,6 @@ public class Grid {
     private int gridWidth;
     private int gridHeight;
     private GraphicsContext g;
-    private boolean stopRun = false;
 
     public Grid(GraphicsContext g, double width, double height, int gridWidth, int gridHeight) {
 	this.width = width;
@@ -78,30 +77,6 @@ public class Grid {
 	    }
 	}
 	return fastest;
-    }
-
-    public void run(int interval) {
-	Thread t = new Thread(new Runnable() {
-
-	    @Override
-	    public void run() {
-		long initialTime;
-		while(!stopRun) {
-		    initialTime = System.currentTimeMillis();
-		    act();
-		    draw();
-		    while(System.currentTimeMillis() - initialTime < interval) {}
-		}
-		stopRun = false;
-	    }
-	    
-	});
-	t.setDaemon(true);
-	t.start();
-    }
-    
-    public void stop() {
-	stopRun = true;
     }
 
     public void changeGridSize(int gridWidth, int gridHeight) {

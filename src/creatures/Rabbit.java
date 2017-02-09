@@ -1,11 +1,13 @@
 package creatures;
 
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class Rabbit extends Creature {
     
     public Rabbit() {
-	setImage(new Image("http://pix.iemoji.com/images/emoji/apple/ios-9/256/rabbit.png"));
+	//setImage(new Image("http://pix.iemoji.com/images/emoji/apple/ios-9/256/rabbit.png"));
+	setColor(Color.RED);
     }
 
     @Override
