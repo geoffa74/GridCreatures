@@ -131,4 +131,7 @@ public abstract class Creature {
 	}
     }
 
+    public String toString() {
+	return this.getClass().getSimpleName();
+    }
 }

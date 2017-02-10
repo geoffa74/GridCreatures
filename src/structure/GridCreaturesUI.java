@@ -23,6 +23,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -49,7 +50,11 @@ public class GridCreaturesUI extends Application {
 
 	    @Override
 	    public void handle(MouseEvent e) {
-		grid.addCreature(e.getX(), e.getY(), currentCreatureType);
+		if(e.getButton().equals(MouseButton.PRIMARY)) {
+		    grid.addCreature(e.getX(), e.getY(), currentCreatureType);
+		} else if(e.getButton().equals(MouseButton.SECONDARY)) {
+		    grid.removeCreature(e.getX(), e.getY());
+		} 
 	    }
 
 	});

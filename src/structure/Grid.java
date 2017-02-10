@@ -29,6 +29,13 @@ public class Grid {
 	creatures[gridX][gridY] = generateCreature(creatureType, gridX, gridY);
 	draw();
     }
+    
+    public void removeCreature(double x, double y) {
+	int gridX = (int) Math.floor(x * gridWidth / width);
+	int gridY = (int) Math.floor(y * gridHeight / height);
+	creatures[gridX][gridY] = null;
+	draw();
+    }
 
     private Creature generateCreature(String creatureType, int x, int y) {
 	Creature creature;
@@ -113,8 +120,7 @@ public class Grid {
     }
 
     private void draw() {
-	g.setFill(Color.WHITE);
-	g.fillRect(0, 0, width, height);
+	g.clearRect(0, 0, width, height);
 	drawCreatures();
 	drawGrid();
     }
