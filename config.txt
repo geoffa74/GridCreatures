@@ -2,4 +2,4 @@ windowWidth: 800
 windowHeight: 800
 gridWidth: 20
 gridHeight: 20
-creatureList: Random, Statue, Rabbit, Test
+creatureList: Random, Statue, Rabbit, Wolf, Potato, GOL, Test

@@ -23,21 +23,21 @@ public class Grid {
 	draw();
     }
 
-    public void addCreature(double x, double y, String creatureType) {
+    public final void addCreature(double x, double y, String creatureType) {
 	int gridX = (int) Math.floor(x * gridWidth / width);
 	int gridY = (int) Math.floor(y * gridHeight / height);
 	creatures[gridX][gridY] = generateCreature(creatureType, gridX, gridY);
 	draw();
     }
     
-    public void removeCreature(double x, double y) {
+    public final void removeCreature(double x, double y) {
 	int gridX = (int) Math.floor(x * gridWidth / width);
 	int gridY = (int) Math.floor(y * gridHeight / height);
 	creatures[gridX][gridY] = null;
 	draw();
     }
 
-    private Creature generateCreature(String creatureType, int x, int y) {
+    private final Creature generateCreature(String creatureType, int x, int y) {
 	Creature creature;
 	try {
 	    creature = (Creature) Class.forName("creatures."+creatureType).newInstance();
@@ -48,7 +48,7 @@ public class Grid {
 	}
     }
 
-    public void act() {
+    public final void act() {
 	Creature creature;
 	do {
 	    creature = getFastestCreature();
@@ -68,7 +68,7 @@ public class Grid {
 	draw();
     }
 
-    private Creature getFastestCreature() {
+    private final Creature getFastestCreature() {
 	Creature fastest = null;
 	for (int i = 0; i < gridWidth; i++) {
 	    for (int j = 0; j < gridHeight; j++) {
@@ -86,12 +86,12 @@ public class Grid {
 	return fastest;
     }
 
-    public void changeGridSize(int gridWidth, int gridHeight) {
+    public final void changeGridSize(int gridWidth, int gridHeight) {
 	this.gridWidth = gridWidth;
 	this.gridHeight = gridHeight;
     }
 
-    private void drawGrid() {
+    private final void drawGrid() {
 	g.setFill(Color.BLACK);
 	for (int i = 0; i <= gridWidth; i++) {
 	    double deltaX = width / gridWidth;
@@ -103,7 +103,7 @@ public class Grid {
 	}
     }
 
-    private void drawCreatures() {
+    private final void drawCreatures() {
 	double creatureWidth = width / gridWidth;
 	double creatureHeight = height / gridHeight;
 	for (int i = 0; i < gridWidth; i++) {

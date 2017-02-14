@@ -43,7 +43,7 @@ public class Potato extends Creature {
                 x++;
             }
             move(0,1);
-        }else {
+        } else {
             kill(0,0);
         }
     }
