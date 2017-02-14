@@ -13,29 +13,38 @@ import java.io.FileNotFoundException;
 public class Potato extends Creature {
 
     public Potato() {
-        //setImage(new Image("https://lh3.googleusercontent.com/-qRmDvvvSw70/V1JQ54e1lyI/AAAAAAAAAXs/INTs7fIUgug9O8UmuKeeUy9xJgE4TnkGw/w426-h409/Potato.png"));
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream("D:/MyDocs/Downloads/MurderousPotato.png");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        setImage(new Image(fis));
+      setPicture(true);
+    }
 
-        setColor(Color.WHITE);
+    private void setPicture(boolean picture){
+        if (picture) {
+            FileInputStream fis = null;
+            try {
+                fis = new FileInputStream("Pictures\\EvilPotato.png");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            setImage(new Image(fis));
+
+            setColor(Color.WHITE);
+        }
     }
 
     @Override
     public void act() {
         int x=0-getX();
         int y=1;
-        System.out.println(x);
-        System.out.println(getX());
-        System.out.println(y);
-        for (int i=0;(i,y+2);i++){
-            kill(x,y);
-            x++;
+        if (getY()<getGridHeight()-1) {
+            for (int i = 0; i < getGridWidth(); i++) {
+                String creatureName = getCreatureName(x,y);
+                if (!"Potato".equals(creatureName)) {
+                    kill(x, y);
+                }
+                x++;
+            }
+            move(0,1);
+        }else {
+            kill(0,0);
         }
-        move(0, 1);
     }
 }
